@@ -1,0 +1,51 @@
+.home-container {
+  color: var(--prim-text);
+
+  .hero-container {
+    color: var(--platinum-color);
+    height: 100vh;
+    background-image: url(../assets/guitar-right.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 15% 10%;
+    display: flex;
+    align-items: center;
+    h1 {
+      margin-left: 1rem;
+      font-family: Century Gothic;
+      .user-name {
+        font-style: italic;
+        color: var(--spotify-color1);
+      }
+    }
+  }
+
+  .details-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0;
+    flex-direction: column;
+    color: var(--prim-text);
+    background-color: var(--platinum-color);
+    h3 {
+      font-size: 1.5rem;
+      color: var(--spotify-color1);
+    }
+    p {
+      padding: 1rem;
+      font-size: 1.2rem;
+    }
+    a {
+      text-decoration: none;
+      color: var(--spotify-color1);
+    }
+    .details {
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}

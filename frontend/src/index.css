@@ -1,0 +1,42 @@
+:root {
+  font-family: Century Gothic, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+
+  --spotify-color1: #1db954;
+  --spotify-color2: #1db944;
+  --btn-hover: #017701;
+  --platinum-color: #e5e4e2;
+  --prim-text: #1d2a1d;
+  --sidenav-bg-color: hsl(0, 0%, 10%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 1rem;
+  color: var(--spotify-color1);
+  font-weight: bold;
+  background-color: var(--platinum-color);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1rem;
+  font-size: larger;
+  border: none;
+  outline: none;
+  &:hover {
+    border: none;
+    outline: none;
+    color: var(--platinum-color);
+    background-color: var(--btn-hover);
+    cursor: pointer;
+  }
+}
