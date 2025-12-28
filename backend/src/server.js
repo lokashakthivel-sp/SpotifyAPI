@@ -12,12 +12,6 @@ const app = express();
 app.use(cors({ origin: "http://127.0.0.1:4000" }));
 app.use(json());
 
-const globalObj = {
-  access_token: "",
-  user_id: null,
-  user_email: "",
-};
-
 app.post("/auth", async (req, res) => {
   const { code } = req.body;
   try {
@@ -59,11 +53,11 @@ app.post("/auth", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    globalObj.access_token = access_token;
-    globalObj.user_id = currentUserResponse.id;
-    globalObj.user_email = currentUserResponse.email;
-
-    res.json({ token: myJwtToken, user: currentUserResponse });
+    res.json({
+      jwtToken: myJwtToken,
+      accessToken: access_token,
+      user: currentUserResponse,
+    });
   } catch (error) {
     console.error("Spotify Auth Error:", error.response?.data || error.message);
     res.status(500).json({ error: "Authentication failed" });
@@ -71,7 +65,8 @@ app.post("/auth", async (req, res) => {
 });
 
 const verifyToken = (req, res, next) => {
-  const authHeader = req.headers["Authorization"];
+  const authHeader = req.headers.authorization;
+
   if (!authHeader)
     return res.status(403).json({ error: "No jwt Token provided" });
 
@@ -79,7 +74,6 @@ const verifyToken = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      // Token is expired, modified, or invalid
       return res.status(401).json({ error: "Unauthorized: Invalid token" });
     }
 
@@ -89,18 +83,52 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-app.get("/topTracks", verifyToken, async (req, res) => {
+app.post("/topTracks", verifyToken, async (req, res) => {
+  try {
+    const { accessToken } = req.body;
+    const spotifyRes = await axios.get(
+      "https://api.spotify.com/v1/me/top/tracks",
+      {
+        params: {
+          limit: 10,
+          time_range: "short_term",
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
 
-  if(res.user.id !== globalObj.user_id || res.user.email !== globalObj.user_email )
-    return res.status(401).json({error:"jwt"})
+    res.json(spotifyRes.data);
+  } catch (error) {
+    res.status(error.response ? error.response.status : 500).json({
+      error: "Failed to fetch top tracks from Spotify",
+    });
+  }
+});
 
-  const res = axios.get("https://api.spotify.com/v1/me/top/tracks", {
-    headers: {
-      Authorization: "Bearer " + access_token,
-    },
-  });
+app.post("/topArtists", verifyToken, async (req, res) => {
+  try {
+    const { accessToken } = req.body;
+    const spotifyRes = await axios.get(
+      "https://api.spotify.com/v1/me/top/artists",
+      {
+        params: {
+          limit: 10,
+          time_range: "short_term",
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
 
-  res.json();
+    res.json(spotifyRes.data);
+  } catch (error) {
+    res.status(error.response ? error.response.status : 500).json({
+      error: "Failed to fetch top tracks from Spotify",
+    });
+  }
 });
 
 app.listen(3000, () => console.log("Server running at 3000"));

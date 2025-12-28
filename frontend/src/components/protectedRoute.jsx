@@ -23,21 +23,16 @@ const ProtectedRoute = () => {
     const my_login = async () => {
       try {
         if (authCode && !isAuthenticated) {
-          //request to backend server running at 3000, passing the authorisation code we got just now
           const response = await fetch(BACKEND_URL + "auth", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ code: authCode }),
           });
           if (response.ok) {
-            //we get the jwt token and full user data
             const data = await response.json();
-            //set user details in auth store(this also updates the isAuthenticated)
             dispatch(login(data.user));
-
-            //set jwt token in local storage
-            localStorage.setItem("JwtTkn", data.token);
-
+            localStorage.setItem("JwtTkn", data.jwtToken);
+            localStorage.setItem("AccessTkn", data.accessToken);
             setSearchParams({});
           }
         }
