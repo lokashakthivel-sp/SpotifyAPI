@@ -90,7 +90,7 @@ app.post("/topTracks", verifyToken, async (req, res) => {
       "https://api.spotify.com/v1/me/top/tracks",
       {
         params: {
-          limit: 10,
+          limit: 9,
           time_range: "short_term",
         },
         headers: {
@@ -114,7 +114,7 @@ app.post("/topArtists", verifyToken, async (req, res) => {
       "https://api.spotify.com/v1/me/top/artists",
       {
         params: {
-          limit: 10,
+          limit: 9,
           time_range: "short_term",
         },
         headers: {

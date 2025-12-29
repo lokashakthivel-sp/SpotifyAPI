@@ -21,23 +21,23 @@ const ProtectedRoute = () => {
   useEffect(() => {
     if (shouldRun === false) return;
     const my_login = async () => {
-      try {
-        if (authCode && !isAuthenticated) {
-          const response = await fetch(BACKEND_URL + "auth", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ code: authCode }),
-          });
-          if (response.ok) {
-            const data = await response.json();
-            dispatch(login(data.user));
-            localStorage.setItem("JwtTkn", data.jwtToken);
-            localStorage.setItem("AccessTkn", data.accessToken);
-            setSearchParams({});
-          }
+      if (authCode && !isAuthenticated) {
+        const response = await fetch(BACKEND_URL + "auth", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: authCode }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem("JwtTkn", data.jwtToken);
+          localStorage.setItem("AccessTkn", data.accessToken);
+          setSearchParams({});
+          dispatch(login(data.user));
+        } else {
+          throw new Error(
+            `Error logging in: Status: ${response.status} \n ${response.error}`
+          );
         }
-      } catch (error) {
-        throw new Error(error);
       }
     };
     my_login();
