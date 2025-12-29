@@ -3,6 +3,7 @@ import { setTopArtists, setTopTracks } from "../store/slices/topItemsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTopItems } from "../services/api";
 import TrackCard from "../components/trackCard";
+import ArtistCard from "../components/artistCard";
 
 export default function TopItems() {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ export default function TopItems() {
 
   const handleTracksClick = async () => {
     const topTracks = await fetchTopItems("topTracks");
-    console.log(topTracks.items[0]);
 
     dispatch(setTopTracks(topTracks.items));
   };
@@ -34,7 +34,7 @@ export default function TopItems() {
     <div className="top-items-container">
       <section>
         <h2>Top Tracks</h2>
-        <div className="track-card-container">
+        <div className="card-container">
           {isTopTracksSet ? (
             topTracks.map((track, index) => (
               <TrackCard
@@ -60,16 +60,30 @@ export default function TopItems() {
       </section>
       <section>
         <h2>Top Artists</h2>
-        {isTopArtistsSet ? (
-          topArtists.map((artist, index) => <li key={index}>{artist.name}</li>)
-        ) : (
-          <div className="detail-btn-container">
-            <p>Get to know about the top artists you listen the most often</p>
-            <button className="btn-top-item" onClick={handleArtistsClick}>
-              Get top artists
-            </button>
-          </div>
-        )}
+        <div className="card-container">
+          {isTopArtistsSet ? (
+            topArtists.map((artist, index) => (
+              <ArtistCard
+                key={index}
+                props={{
+                  name: artist.name,
+                  popularity: artist.popularity,
+                  href: artist.external_urls.spotify,
+                  followers: artist.followers.total,
+                  images: artist.images,
+                  genres: artist.genres,
+                }}
+              />
+            ))
+          ) : (
+            <div className="detail-btn-container">
+              <p>Get to know about the top artists you listen the most often</p>
+              <button className="btn-top-item" onClick={handleArtistsClick}>
+                Get top artists
+              </button>
+            </div>
+          )}
+        </div>
       </section>
     </div>
   );
