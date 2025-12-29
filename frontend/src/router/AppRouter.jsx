@@ -5,6 +5,7 @@ import ProtectedRoute from "../components/protectedRoute";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
 import TopItems from "../pages/TopItems";
+import History from "../pages/History";
 
 const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/top-items" element={<TopItems />} />
+            <Route path="/history" element={<History />} />
             {/* add more pages */}
           </Route>
         </Route>

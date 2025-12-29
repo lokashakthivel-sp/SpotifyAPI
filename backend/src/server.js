@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express, { json } from "express";
+import express, { json, response } from "express";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import { stringify } from "qs";
@@ -74,7 +74,7 @@ const verifyToken = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ error: "Unauthorized: Invalid token" });
+      return res.status(401).json({ error: "Invalid token" });
     }
 
     res.user = decoded;
@@ -127,6 +127,33 @@ app.post("/topArtists", verifyToken, async (req, res) => {
   } catch (error) {
     res.status(error.response ? error.response.status : 500).json({
       error: "Failed to fetch top tracks from Spotify",
+    });
+  }
+});
+
+app.post("/history", verifyToken, async (req, res) => {
+  try {
+    const { accessToken } = req.body;
+
+    const spotifyRes = await axios.get(
+      "https://api.spotify.com/v1/me/player/recently-played",
+      {
+        params: {
+          limit: 25,
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    res.json(spotifyRes.data);
+  } catch (error) {
+    console.log(response);
+    console.log(error);
+
+    res.status(error.response ? error.response.status : 500).json({
+      error: "Failed to fetch history from Spotify",
     });
   }
 });

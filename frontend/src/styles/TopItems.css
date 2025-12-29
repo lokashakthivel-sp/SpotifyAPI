@@ -14,7 +14,7 @@
   }
   h2 {
     color: var(--spotify-color1);
-    text-align: center;
+    text-align: center; 
   }
   .detail-btn-container {
     display: flex;
