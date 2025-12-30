@@ -2,7 +2,9 @@ import "../styles/topItemCard.css";
 export default function TrackCard({ props }) {
   return (
     <div className="card">
-      <img src={props.images[1].url} alt="Track Image" />
+      <div className="img-container">
+        <img src={props.images[1].url} alt="Track Image" />
+      </div>
 
       <div className="card-details-container">
         <a href={props.href} className="name">

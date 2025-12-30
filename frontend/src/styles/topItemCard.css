@@ -28,7 +28,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    a,p {
+    a,
+    p {
       color: var(--prim-text);
       display: block;
     }

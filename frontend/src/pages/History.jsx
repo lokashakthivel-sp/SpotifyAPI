@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setHistory } from "../store/slices/historySlice";
 import "../styles/History.css";
 import { fetchHistory } from "../services/api";
+import HistoryCard from "../components/HistoryCard";
 
 export default function History() {
   const isHistorySet = useSelector((state) => state.history.isHistorySet);
@@ -19,17 +20,22 @@ export default function History() {
       <p>Your recently played tracks is here</p>
       <div className="list-container">
         {isHistorySet ? (
-          <>
+          <div className="history-card-container">
             {history.map((historyItem, index) => (
-              <li key={index}>{historyItem.track.name}</li>
+              <HistoryCard
+                key={index}
+                props={{
+                  name: historyItem.track.name,
+                  href: historyItem.track.external_urls.spotify,
+                  artists: historyItem.track.artists,
+                  playedAt: new Date(historyItem.played_at),
+                }}
+              />
             ))}
-            <button onClick={handleClick}>Refresh</button>;
-          </>
+            <button onClick={handleClick}>Refresh</button>
+          </div>
         ) : (
-          <>
-            <p>no history yet</p>
-            <button onClick={handleClick}>Get history</button>
-          </>
+          <button onClick={handleClick}>Get history</button>
         )}
       </div>
     </div>
