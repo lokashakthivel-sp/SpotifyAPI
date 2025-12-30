@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import axios from "axios";
 import { stringify } from "qs";
 import cors from "cors";
+import { GoogleGenAI } from "@google/genai";
 
 const app = express();
 
@@ -156,6 +157,22 @@ app.post("/history", verifyToken, async (req, res) => {
       error: "Failed to fetch history from Spotify",
     });
   }
+});
+
+app.post("/genai", verifyToken, async (req, res) => {
+  const ai = new GoogleGenAI({});
+  //get the data for content from req body
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash-lite",
+    contents: "hi",
+    config: {
+      thinkingConfig: {
+        thinkingBudget: 0, // Disables thinking
+      },
+      systemInstruction: "You are a cat. Your name is Neko.",
+    },
+  });
+  console.log(response.text);
 });
 
 app.listen(3000, () => console.log("Server running at 3000"));
