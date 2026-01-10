@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import TopItems from "../pages/TopItems";
 import History from "../pages/History";
+import RoastAI from "../pages/RoastAI";
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
             <Route path="/" element={<Home />} />
             <Route path="/top-items" element={<TopItems />} />
             <Route path="/history" element={<History />} />
+            <Route path="/roast-me" element={<RoastAI />} />
             {/* add more pages */}
           </Route>
         </Route>

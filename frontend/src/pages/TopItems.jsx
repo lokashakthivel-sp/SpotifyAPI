@@ -22,15 +22,10 @@ export default function TopItems() {
   };
   const handleArtistsClick = async () => {
     const topArtists = await fetchTopItems("topArtists");
-    console.log(topArtists.items[0]);
-
     dispatch(setTopArtists(topArtists.items));
   };
 
   return (
-    // create a nice card for both track li and artist li displaying the important data,
-    // track - name,popularity,href album.images[i], artists[i].name,artists[i].href
-
     <div className="top-items-container">
       <section>
         <h2>Top Tracks</h2>

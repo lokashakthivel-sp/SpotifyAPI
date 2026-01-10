@@ -11,7 +11,6 @@ export default function History() {
 
   const handleClick = async () => {
     const responseData = await fetchHistory();
-    console.log(responseData.items[0]);
     dispatch(setHistory(responseData.items));
   };
   return (

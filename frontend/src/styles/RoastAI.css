@@ -1,11 +1,17 @@
-.history-container {
+.roast-container {
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   justify-content: center;
+  height: 100%;
   color: var(--prim-text);
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
   h2 {
     color: var(--spotify-color1);
     text-align: center;
@@ -17,13 +23,9 @@
       background-color: var(--btn-hover);
     }
   }
-}
-
-.history-card-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
+  .error-msg {
+    color: red;
+    margin-top: 5px;
+    font-size: small;
+  }
 }

@@ -2,7 +2,7 @@ const BACKEND_URL = "http://127.0.0.1:3000/";
 const jwtToken = localStorage.getItem("JwtTkn");
 const accessToken = localStorage.getItem("AccessTkn");
 
-const general_fetch = async (url) => {
+const general_fetch = async (url, content = null) => {
   try {
     const response = await fetch(BACKEND_URL + url, {
       method: "POST",
@@ -12,6 +12,7 @@ const general_fetch = async (url) => {
       },
       body: JSON.stringify({
         accessToken: accessToken,
+        content: content,
       }),
     });
     if (!response.ok) {
@@ -31,4 +32,8 @@ export const fetchTopItems = async (itemName) => {
 
 export const fetchHistory = async () => {
   return await general_fetch("history");
+};
+
+export const fetchRoast = async (content) => {
+  return await general_fetch("genai", content);
 };

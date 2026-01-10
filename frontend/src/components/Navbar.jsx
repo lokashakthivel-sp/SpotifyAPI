@@ -6,6 +6,7 @@ import HomeIcon from "../assets/home.svg?react";
 import LogoutIcon from "../assets/logout.svg?react";
 import HeartIcon from "../assets/heart.svg?react";
 import HistoryIcon from "../assets/history.svg?react";
+// import AIIcon from "../assets/ai.svg?react";
 
 const Navbar = () => {
   const navItems = [
@@ -19,6 +20,12 @@ const Navbar = () => {
       name: "History",
       path: "/history",
       icon: <HistoryIcon className="sidenav-icon" />,
+    },
+    {
+      name: "Roast Me",
+      path: "/roast-me",
+      // change icon to AIIcon
+      icon: <LogoutIcon className="sidenav-icon" />,
     },
     {
       name: "Logout",

@@ -29,7 +29,8 @@
   .artist {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    gap: 1.5rem;
+    justify-content: center;
     a {
       color: var(--prim-text);
     }

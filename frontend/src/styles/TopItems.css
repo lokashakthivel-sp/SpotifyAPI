@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   row-gap: 1.5rem;
+  height: 100%;
   color: var(--prim-text);
   section {
     display: flex;
