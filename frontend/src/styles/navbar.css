@@ -19,6 +19,9 @@
   justify-content: space-evenly;
   padding: 1rem;
   margin-top: 10px;
+  h2 {
+    color: var(--spotify-color1);
+  }
 }
 
 nav {
@@ -50,9 +53,9 @@ nav {
     &.active,
     &:hover {
       background-color: var(--spotify-color1);
-      color: var(--platinum-color);
+      color: var(--sidenav-color);
       .sidenav-icon {
-        color: black;
+        color: var(--sidenav-color);
       }
       &:last-child .sidenav-icon {
         color: rgb(194, 32, 32);
@@ -61,5 +64,13 @@ nav {
     &:last-child {
       margin-top: auto;
     }
+    &:nth-child(4) {
+      animation: gradient 0.5s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes gradient {
+  from {
   }
 }

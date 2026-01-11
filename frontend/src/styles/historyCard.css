@@ -9,7 +9,7 @@
   width: max(45vw, 550px);
   border-radius: 80px;
   corner-shape: bevel;
-  border: 2px solid white;
+  border: 2px solid var(--card-border);
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2),
     3px 3px 1px rgba(0, 0, 0, 0.1) inset;
   transition: all 0.3s ease;

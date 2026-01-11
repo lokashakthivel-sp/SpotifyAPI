@@ -56,6 +56,7 @@ const ProtectedRoute = () => {
           fontSize: "1.5rem",
           color: "var(--spotify-color1)",
           height: "100vh",
+          backgroundColor: "var(--main-bg-color)",
         }}
       >
         Verifying Login...

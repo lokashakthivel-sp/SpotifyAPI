@@ -12,7 +12,7 @@
   }
   button {
     background-color: var(--spotify-color1);
-    color: var(--platinum-color);
+    color: var(--btn-text);
     &:hover {
       background-color: var(--btn-hover);
     }
