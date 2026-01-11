@@ -1,7 +1,8 @@
 import "../styles/RoastAI.css";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchRoast } from "../services/api.js";
+import { setRoast } from "../store/slices/roastSlice.js";
 
 export default function RoastAI() {
   const isTopTracksSet = useSelector((state) => state.topItems.isTopTracksSet);
@@ -12,13 +13,14 @@ export default function RoastAI() {
 
   const [btnClicked, setBtnClicked] = useState(false);
   const [showErr, setShowErr] = useState(false);
-  const [genContent, setGenContent] = useState("");
+
+  const isRoastSet = useSelector((state) => state.roast.isRoastSet);
+  const roast = useSelector((state) => state.roast.roast);
+
+  const dispatch = useDispatch();
 
   const handleClick = async () => {
     setBtnClicked(true);
-
-    console.log(isTopTracksSet + " " + isHistorySet);
-
     if (!isTopTracksSet || !isHistorySet) {
       setShowErr(true);
       return;
@@ -35,26 +37,28 @@ export default function RoastAI() {
 
     const responseData = await fetchRoast(content);
     console.log(responseData);
-    setGenContent(responseData);
+    dispatch(setRoast(responseData));
   };
 
   return (
     <div className="roast-container">
       <h2>Roast Me</h2>
-      {btnClicked && !showErr ? (
-        <>{genContent ? genContent : "Not available now.. loading"}</>
-      ) : (
-        <>
-          <p>
-            Want to get roasted based on your top tracks and recently listened
-            tracks?
-          </p>
-          <button onClick={handleClick}>Get Roasted</button>
-          {showErr && (
-            <p className="error-msg">Get top tracks and history first!</p>
-          )}
-        </>
-      )}
+      <section>
+        {isRoastSet || (btnClicked && !showErr) ? (
+          <p className="content">{roast ? roast : "Loading..."}</p>
+        ) : (
+          <>
+            <p>
+              Want to get roasted based on your top tracks and recently listened
+              tracks?
+            </p>
+            <button onClick={handleClick}>Get Roasted</button>
+            {showErr && (
+              <p className="error-msg">Get top tracks and history first!</p>
+            )}
+          </>
+        )}
+      </section>
     </div>
   );
 }
