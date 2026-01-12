@@ -29,12 +29,15 @@
     flex-direction: column;
     color: var(--prim-text);
     h3 {
-      font-size: 1.5rem;
+      font-size: minmax(1.5rem);
       color: var(--spotify-color1);
     }
     p {
       padding: 1rem;
-      font-size: 1.2rem;
+      font-size: clamp(14px, 2vw, 19px);
+    }
+    & > p {
+      word-break: break-all;
     }
     a {
       text-decoration: none;
@@ -46,6 +49,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      @media screen and (max-width: 600px) {
+        flex-direction: column;
+      }
     }
   }
 }

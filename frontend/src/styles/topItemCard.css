@@ -15,12 +15,19 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     height: 300px;
     width: 300px;
+    aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 80px;
     corner-shape: squircle;
+    @media screen and (max-width: 600px) {
+      transform: scale(0.8);
+    }
   }
   &:hover img {
     transform: scale(1.03);
+    @media screen and (max-width: 600px) {
+      transform: scale(0.83);
+    }
   }
   .card-details-container {
     display: flex;
@@ -32,17 +39,22 @@
     p {
       color: var(--prim-text);
       display: block;
+      font-size: clamp(14px, 2vw, 18px);
     }
     .name {
-      font-size: 1.2rem;
+      font-size: clamp(16px, 2vw, 22px);
     }
     .popularity {
-      font-size: 0.9rem;
+      font-size: clamp(12px, 2vw, 16px);
       font-style: oblique;
     }
     .list {
       text-align: center;
       margin-top: 1rem;
+      a,
+      p {
+        font-size: clamp(12px, 2vw, 16px);
+      }
     }
   }
 }

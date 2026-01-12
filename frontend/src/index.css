@@ -30,7 +30,7 @@
     --sidenav-bg-color: hsl(0, 0%, 9%);
     --card-border: #4f4f4f;
     --home-bg: url("./assets/guitar-dark.jpg");
-    --sidenav-color:#121212;
+    --sidenav-color: #121212;
   }
 }
 
@@ -42,9 +42,10 @@
 
 button {
   margin-top: 1rem;
-  color: var(--spotify-color1);
   font-weight: bold;
-  background-color: var(--btn-text);
+  background-color: var(--spotify-color1);
+  color: var(--btn-text);
+  font-size: clamp(16px, 2vw, 18px);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1rem;
@@ -72,4 +73,13 @@ pre,
 p {
   font-family: "Google Sans", sans-serif;
   font-size: large;
+}
+
+h2 {
+  color: var(--spotify-color1);
+  text-align: center;
+}
+p {
+  text-align: center;
+  font-size: clamp(14px, 2vw, 16px);
 }

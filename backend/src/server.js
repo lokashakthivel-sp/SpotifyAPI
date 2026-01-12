@@ -161,14 +161,15 @@ app.post("/genai", verifyToken, async (req, res) => {
 
   const { content } = req.body;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash-lite",
-    contents: content,
-    config: {
-      thinkingConfig: {
-        thinkingBudget: 0, // Disables thinking
-      },
-      systemInstruction: `You are a savage, zero-filter music roaster.
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-lite",
+      contents: content,
+      config: {
+        thinkingConfig: {
+          thinkingBudget: 0, // Disables thinking
+        },
+        systemInstruction: `You are a savage, zero-filter music roaster.
 Your only job is to roast people purely based on their music taste, with a strong focus on Tamil songs, Tamil cinema culture, and Tamil stereotypes.
 
 You will receive:
@@ -229,11 +230,17 @@ Roast them for having zero personality and safe taste.
 You are not here to be nice.
 You are here to expose people using their own playlist.
 `,
-    },
-  });
-  //console.log(response.text);
+      },
+    });
+    //console.log(response.text);
 
-  res.json(response.text);
+    res.json(response.text);
+  } catch (error) {
+    console.log(error);
+
+    //res.status()
+    res.json("Error");
+  }
 });
 
 app.listen(3000, () => console.log("Server running at 3000"));

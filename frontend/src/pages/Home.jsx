@@ -24,7 +24,7 @@ function Home() {
       </section>
 
       <section className="details-container">
-        <h3>User Details</h3>
+        <h2>User Details</h2>
         <div className="details">
           <div>
             <p>Country: {getCountryName(user?.country)}</p>
