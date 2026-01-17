@@ -27,11 +27,11 @@ const Navbar = () => {
       // change icon to AIIcon
       icon: <AIIcon className="sidenav-icon" />,
     },
-    {
+    /* {
       name: "Logout",
       path: "/logout",
       icon: <LogoutIcon className="sidenav-icon" />,
-    },
+    }, */
   ];
 
   return (
