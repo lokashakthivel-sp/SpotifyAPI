@@ -18,11 +18,11 @@ export default function Login() {
     //change here
     //const REDIRECT_URI = "http://127.0.0.1:4000/"; //local dev
     const REDIRECT_URI = "https://spotify-api-five-lac.vercel.app/"; //prod
-    
+
     const SCOPES =
       "user-read-private user-read-email user-top-read user-read-recently-played";
 
-    const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=${SCOPES}`;
+    const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${SCOPES}`;
     //first goto to spotify for getting authorisation code
     window.location.href = spotifyUrl;
   };
