@@ -11,8 +11,8 @@ import { GoogleGenAI } from "@google/genai";
 const app = express();
 
 //change here
-app.use(cors({ origin: "http://127.0.0.1:4000" }));
-app.use(cors({ origin: "https://spotify-api-five-lac.vercel.app/" }));
+//app.use(cors({ origin: "http://127.0.0.1:4000" })); //local dev
+app.use(cors({ origin: "https://spotify-api-five-lac.vercel.app/" })); //prod
 app.use(json());
 
 app.post("/auth", async (req, res) => {
