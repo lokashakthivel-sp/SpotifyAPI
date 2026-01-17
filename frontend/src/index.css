@@ -17,7 +17,7 @@
   --main-bg-color: #eeeeee;
   --sidenav-bg-color: hsl(0, 0%, 100%);
   --card-border: #fff;
-  --home-bg: url("./assets/guitar-light.png");
+  --home-bg: url("/assets/guitar-light.png");
   --sidenav-color: #f4f4f4;
 }
 
@@ -29,7 +29,7 @@
     --main-bg-color: #1f1f1f;
     --sidenav-bg-color: hsl(0, 0%, 9%);
     --card-border: #4f4f4f;
-    --home-bg: url("./assets/guitar-dark.jpg");
+    --home-bg: url("/assets/guitar-dark.jpg");
     --sidenav-color: #121212;
   }
 }
