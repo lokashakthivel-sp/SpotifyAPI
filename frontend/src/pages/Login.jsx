@@ -31,7 +31,7 @@ export default function Login() {
     <div className="login-container">
       <div className="inner-container">
         <div className="site-details">
-          <img src="/src/assets/logo.svg" alt="" height="100px" width="100px" />
+          <img src="/assets/logo.svg" alt="" height="100px" width="100px" />
           <h3>
             <span className="details-text">
               The SpotifyAPI web application is a interactive tool to view your
