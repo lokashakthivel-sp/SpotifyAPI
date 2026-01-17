@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
 
   //change here
   //const BACKEND_URL = "http://127.0.0.1:3000/"; //local dev
-  const BACKEND_URL = "https://spotifyapi-backend-j843.onrender.com"; //local dev
+  const BACKEND_URL = "https://spotifyapi-backend-j843.onrender.com/"; //local dev
 
   const authCode = searchParams.get("code");
 

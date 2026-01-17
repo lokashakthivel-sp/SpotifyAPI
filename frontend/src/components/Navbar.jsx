@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <div className="sidenav">
       <div className="logo-container">
-        <img src="/assests/logo.svg" height={"50px"} width={"50px"} />
+        <img src="/assets/logo.svg" height={"50px"} width={"50px"} />
         <h2>SpotifyAPI</h2>
       </div>
       <nav>
