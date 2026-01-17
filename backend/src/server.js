@@ -10,6 +10,7 @@ import { GoogleGenAI } from "@google/genai";
 
 const app = express();
 
+//change here
 app.use(cors({ origin: "http://127.0.0.1:4000" }));
 app.use(json());
 
@@ -21,7 +22,7 @@ app.post("/auth", async (req, res) => {
       stringify({
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "http://127.0.0.1:4000/",
+        redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
       }),
       {
         headers: {
