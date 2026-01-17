@@ -17,7 +17,7 @@ export default function Login() {
     const CLIENT_ID = "b4569498e48c4cad88e924fb8f37c4d7";
     //change here
     //const REDIRECT_URI = "http://127.0.0.1:4000/"; //local dev
-    const REDIRECT_URI = "https://spotify-api-five-lac.vercel.app/"; //local dev
+    const REDIRECT_URI = "https://spotify-api-five-lac.vercel.app/"; //prod
     
     const SCOPES =
       "user-read-private user-read-email user-top-read user-read-recently-played";

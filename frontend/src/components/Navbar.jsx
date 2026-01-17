@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
-import logo from "../assets/logo.svg";
 import HomeIcon from "../assets/home.svg?react";
 import LogoutIcon from "../assets/logout.svg?react";
 import HeartIcon from "../assets/heart.svg?react";
@@ -37,7 +36,7 @@ const Navbar = () => {
   return (
     <div className="sidenav">
       <div className="logo-container">
-        <img src={logo} height={"50px"} width={"50px"} />
+        <img src="/assests/logo.svg" height={"50px"} width={"50px"} />
         <h2>SpotifyAPI</h2>
       </div>
       <nav>
